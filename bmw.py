@@ -8,12 +8,15 @@ import certifi
 import csv
 import numpy as np
 
+# Start time
+start_time = time.time()
+
 #Create storage lists
 prices = []
 kms = []
 year = []
 # Initiating a for loop to fill the sorage lists with raw data per page
-for i in range(1,12):
+for i in range(1,21):
     # specify the url
     url_base = "https://www.autoscout24.nl/resultaten?mmvmk0=13&mmvmd0=18481&mmvco=1&cy=NL&fuel=D&powertype=kw&atype=C&ustate=N%2CU&sort=standard&desc=0&page="
     url = url_base + str(i) + '&size=20'
@@ -104,6 +107,9 @@ clean_year = list(map(int,clean_year1))
 
 # Combining the clean data, converting to np and transposing the columns
 combined_list = np.transpose(np.array([clean_year, clean_kms, clean_prices]))
+
+# Printing update about the number of cars found
+print('extracted information of ' + str(len(clean_year)) + ' cars, in ' + '%s seconds' % round((time.time() - start_time), 0))
 
 # Exporting data to .csv file
 with open('/Users/bastiaanwitte/desktop/datascience/bmw.csv', "w") as output:
