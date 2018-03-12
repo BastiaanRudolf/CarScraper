@@ -115,3 +115,5 @@ print('extracted information of ' + str(len(clean_year)) + ' cars, in ' + '%s se
 with open('/Users/bastiaanwitte/desktop/datascience/bmw.csv', "w") as output:
     writer = csv.writer(output)
     writer.writerows(combined_list)
+
+# End of script
